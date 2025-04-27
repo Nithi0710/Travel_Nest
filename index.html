@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TravelNest - Explore the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="showSection('home')">TravelNest</div>
+  <nav>
+    <ul>
+      <li><a onclick="showSection('home')">Home</a></li>
+      <li><a onclick="showSection('about')">About</a></li>
+      <li><a id="loginLink" onclick="showSection('login')">Login</a></li>
+      <li><a id="signupLink" onclick="showSection('signup')">Sign Up</a></li>
+      <li><a id="dashboardLink" style="display:none;" onclick="showSection('dashboard')">Dashboard</a></li>
+      <li><a id="logoutLink" style="display:none;" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Home Section -->
+<section id="home" class="active">
+  <div class="hero">
+    <h1>Explore the World with TravelNest</h1>
+    <p>Find your next adventure today!</p>
+  </div>
+  <div class="destinations">
+    <div class="destination-card">
+      <img src="paris.jpg" alt="Paris">
+      <h3>Paris</h3>
+      <p> Price: 20000</p>
+      <button onclick="showSection('selectGuests')">Book Now</button>
+    </div>
+    <div class="destination-card">
+      <img src="bali.jpg" alt="Bali">
+      <h3>Bali</h3>
+      <p> Price: 15000</p>
+      <button onclick="showSection('selectGuests')">Book Now</button>
+    </div>
+    <div class="destination-card">
+      <img src="newyork.jpg" alt="New York">
+      <h3>New York</h3>
+      <p> Price: 60000</p>
+      <button onclick="showSection('selectGuests')">Book Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <div class="hero">
+    <h1>About TravelNest</h1>
+    <p>Your gateway to unforgettable travel experiences! Explore, Book, and enjoy incredible destinations at great prices 🌍✈️.</p>
+  </div>
+</section>
+
+<!-- Login Section -->
+<section id="login">
+  <div class="form-container">
+    <h2>Login</h2>
+    <form onsubmit="login(event)">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <p>Don't have an account? <span style="color: #7b2cbf; cursor:pointer;" onclick="showSection('signup')">Sign Up</span></p>
+    </form>
+  </div>
+</section>
+
+<!-- Signup Section -->
+<section id="signup">
+  <div class="form-container">
+    <h2>Create Account</h2>
+    <form onsubmit="signup(event)">
+      <input type="text" id="signupName" placeholder="Full Name" required>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+      <p>Already have an account? <span style="color: #7b2cbf; cursor:pointer;" onclick="showSection('login')">Login</span></p>
+    </form>
+  </div>
+</section>
+
+<!-- Dashboard Section -->
+<section id="dashboard">
+  <div class="dashboard-container">
+    <h2>Welcome, <span id="userName"></span>!</h2>
+    <p>Your dashboard is where you manage your bookings, profile, and more.</p>
+
+    <!-- Booking Table -->
+    <h3>Your Bookings</h3>
+    <table id="bookingTable">
+      <thead>
+        <tr>
+          <th>Destination</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="bookingBody">
+        <!-- Bookings will appear here -->
+      </tbody>
+    </table>
+
+    <a href="javascript:void(0)" onclick="logout()" class="home-btn">Logout</a>
+  </div>
+</section>
+
+<!-- Select Guests Section -->
+<section id="selectGuests">
+  <div class="form-container">
+    <h2>How many guests?</h2>
+    <form onsubmit="showSection('selectDate'); return false;">
+      <input type="number" name="adults" placeholder="Number of Adults" min="1" required>
+      <input type="number" name="children" placeholder="Number of Children" min="0" required>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+</section>
+
+<!-- Select Date Section -->
+<section id="selectDate">
+  <div class="form-container">
+    <h2>Select your travel date</h2>
+    <form onsubmit="showSection('travelerDetails'); return false;">
+      <input type="date" required>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+</section>
+
+<!-- Traveler Details Section -->
+<section id="travelerDetails">
+  <div class="form-container">
+    <h2>Traveler Details</h2>
+    <form onsubmit="showSection('payment'); return false;">
+      <input type="text" placeholder="Full Name" required>
+      <input type="number" placeholder="Age" required>
+      <input type="tel" placeholder="Contact Number" required>
+      <input type="email" placeholder="Email" required>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+</section>
+
+<!-- Payment Section -->
+<section id="payment">
+  <div class="form-container">
+    <h2>Confirm Payment</h2>
+    <p>Total Price: $500 (Based on Adults and Children selected)</p>
+    <button onclick="confirmPayment()">Confirm Payment</button>
+  </div>
+</section>
+
+<!-- Success Section -->
+<section id="success">
+  <div class="success-container">
+    <h1>Booking Successful!</h1>
+    <p>Thank you for choosing TravelNest! 🎉✨</p>
+    <br>
+    <span class="home-btn" onclick="showSection('home')">Back to Home</span>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 TravelNest. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
